@@ -8,7 +8,7 @@ const TodoNew = (props) => {
     const { addNewTodo } = props;
 
     const handleClick = () => {
-        console.log("Check value input: ", valueInput)
+        addNewTodo(valueInput)
     }
 
     //ham thay doi gia tri dua vao o input

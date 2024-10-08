@@ -5,7 +5,7 @@ import reactLogo from './assets/react.svg';
 import { useState } from 'react';
 
 const App = () => {
-
+  //todoList la gia tri ban dau, setTodoList la gia tri cap nhat, useState nhan gia tri ban dau
   const [todoList, setTodoList] = useState([
     { id: 1, name: "Learning React" },
     { id: 2, name: "WatchingYoutube" }
@@ -18,8 +18,18 @@ const App = () => {
   }
 
   const addNewTodo = (name) => {
-    alert(`Call me ${name}`);
+    const newTodo = {
+      id: randomIntFromInterval(1, 1000000),
+      name: name
+    }
+    setTodoList([...todoList, newTodo])
+    //sao chep tat ca du lieu cu trong todoList, cong viec moi se duoc them thong qua newTodo
   }
+
+  const randomIntFromInterval = (min, max) => { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
 
   return (
     <div className="todo-container">
