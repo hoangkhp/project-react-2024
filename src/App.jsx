@@ -24,6 +24,11 @@ const App = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  //logic xoa thanh phan
+  const deleteTodo = (id) => {
+    const deleteT = todoList.filter((todo) => todo.id !== id);
+    setTodoList(deleteT)
+  }
 
   return (
     <div className="todo-container">
@@ -34,6 +39,7 @@ const App = () => {
       {todoList.length > 0 &&
         <TodoData
           todoList={todoList}
+          deleteTodo={deleteTodo}
         />
       }
       {todoList.length === 0 &&
