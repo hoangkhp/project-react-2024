@@ -1,8 +1,9 @@
 import './style.css';
 const MyComponent = () => {
+    const hoidanit = "hoang";
     return (
         <>
-            <div> Hoang vs hoi dan it</div>
+            <div> {hoidanit} Hoang vs hoi dan it</div>
         </>
     );
 }
