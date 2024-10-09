@@ -3,6 +3,8 @@ import TodoNew from './components/todo/TodoNew';
 import './components/todo/todo.css';
 import reactLogo from './assets/react.svg';
 import { useState } from 'react';
+import Header from './components/layout/header';
+import Footer from './components/layout/footer';
 
 const App = () => {
   //todoList la gia tri ban dau, setTodoList la gia tri cap nhat, useState nhan gia tri ban dau
@@ -31,23 +33,28 @@ const App = () => {
   }
 
   return (
-    <div className="todo-container">
-      <div className="todo-title">Todo List</div>
-      <TodoNew
-        addNewTodo={addNewTodo}
-      />
-      {todoList.length > 0 &&
-        <TodoData
-          todoList={todoList}
-          deleteTodo={deleteTodo}
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title">Todo List</div>
+        <TodoNew
+          addNewTodo={addNewTodo}
         />
-      }
-      {todoList.length === 0 &&
-        <div className='todo-image'>
-          <img src={reactLogo} className='logo' />
-        </div>
-      }
-    </div>
+        {todoList.length > 0 &&
+          <TodoData
+            todoList={todoList}
+            deleteTodo={deleteTodo}
+          />
+        }
+        {todoList.length === 0 &&
+          <div className='todo-image'>
+            <img src={reactLogo} className='logo' />
+          </div>
+        }
+      </div>
+      <Footer />
+    </>
+
   )
 }
 
