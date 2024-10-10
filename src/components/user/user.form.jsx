@@ -3,14 +3,16 @@ import { useState } from 'react';
 import { createUserAPI } from '../../service/api.service';
 
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props
+    //cac state de xac ding trang thai cua cac bien
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    //ham trang thai khi an submit
     const handleSubmitBtn = async () => {
         const res = await createUserAPI(fullName, email, password, phone);
         if (res.data) {
@@ -18,7 +20,8 @@ const UserForm = () => {
                 message: "create user",
                 description: "Tạo user thành công"
             })
-            setIsModalOpen(false);
+            resetAndCloseModal();
+            await loadUser();
         } else {
             notification.error({
                 message: "Error create user",
@@ -28,6 +31,15 @@ const UserForm = () => {
 
         console.log("check: ", res.data)
     }
+    //Function giup modal thi se clear data
+    const resetAndCloseModal = () => {
+        setIsModalOpen(false);
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+    }
+
     return (
         <div className="user-form" style={{ margin: "10px 0" }}>
             <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
@@ -42,7 +54,7 @@ const UserForm = () => {
                     title="Basic Modal"
                     open={isModalOpen}
                     onOk={() => handleSubmitBtn()}
-                    onCancel={() => setIsModalOpen(false)}
+                    onCancel={() => resetAndCloseModal()}
                     maskClosable={false}
                     okText={"CREATE"}>
                     <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
